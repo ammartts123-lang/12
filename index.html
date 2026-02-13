@@ -2,31 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Happy Galentine’s Day, Warda 💖</title>
+
   <style>
     :root{
       --bg1:#fff1f8;
       --bg2:#f3f7ff;
-      --card:#ffffffcc;
-      --text:#2b2b33;
-      --muted:#65657a;
+      --card: rgba(255,255,255,.70);
+      --card2: rgba(255,255,255,.58);
+      --text:#231f2e;
+      --muted:#6a6a7b;
       --accent:#ff4fa3;
       --accent2:#7c4dff;
-      --shadow: 0 18px 45px rgba(35, 26, 60, .15);
+      --shadow: 0 18px 55px rgba(25, 15, 55, .14);
+      --shadow2: 0 12px 28px rgba(25, 15, 55, .10);
       --radius: 22px;
     }
 
-    *{box-sizing:border-box}
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; }
+
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
       color:var(--text);
-      min-height:100vh;
       overflow-x:hidden;
       background:
-        radial-gradient(900px 500px at 20% 10%, #ffd6ea 0%, transparent 60%),
-        radial-gradient(900px 500px at 85% 20%, #d7e6ff 0%, transparent 60%),
+        radial-gradient(900px 500px at 18% 10%, #ffd6ea 0%, transparent 60%),
+        radial-gradient(900px 500px at 85% 22%, #d7e6ff 0%, transparent 60%),
         linear-gradient(135deg, var(--bg1), var(--bg2));
     }
 
@@ -41,16 +45,16 @@
     .flower-wrap{
       position:absolute;
       top:-12vh;
+      pointer-events:none;
       will-change: transform;
       animation: fall var(--dur) linear var(--delay) infinite;
-      pointer-events:none;
-      opacity:.9;
-      filter: drop-shadow(0 8px 10px rgba(0,0,0,.08));
+      opacity: var(--op);
+      filter: drop-shadow(0 10px 14px rgba(0,0,0,.08));
     }
     .flower{
-      animation: sway calc(var(--dur) * 0.35) ease-in-out var(--delay) infinite alternate;
-      will-change: transform;
       display:inline-block;
+      will-change: transform;
+      animation: sway calc(var(--dur) * 0.35) ease-in-out var(--delay) infinite alternate;
     }
     @keyframes fall{
       to { transform: translate3d(0, 125vh, 0) rotate(360deg); }
@@ -60,130 +64,175 @@
       to   { transform: translate3d( 18px, 0, 0); }
     }
 
+    /* Layout */
     .wrap{
       position:relative;
       z-index:2;
-      width:min(950px, 92vw);
-      margin: 40px auto 70px;
+      width:min(1100px, 92vw);
+      margin: 42px auto 74px;
     }
 
     .hero{
+      position:relative;
+      border-radius: var(--radius);
       background: var(--card);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
       border: 1px solid rgba(255,255,255,.65);
       box-shadow: var(--shadow);
-      border-radius: var(--radius);
-      padding: clamp(18px, 3vw, 28px);
+      padding: clamp(18px, 3vw, 30px);
       overflow:hidden;
-      position:relative;
     }
-    .hero:before{
+    .hero::before{
       content:"";
       position:absolute;
       inset:-2px;
       background:
-        radial-gradient(280px 140px at 10% 20%, rgba(255,79,163,.18), transparent 70%),
-        radial-gradient(280px 140px at 90% 30%, rgba(124,77,255,.14), transparent 70%);
+        radial-gradient(320px 160px at 10% 18%, rgba(255,79,163,.18), transparent 70%),
+        radial-gradient(340px 170px at 92% 26%, rgba(124,77,255,.15), transparent 72%);
       pointer-events:none;
     }
 
-    .title{
+    .top{
       position:relative;
       display:flex;
-      gap:14px;
       align-items:flex-start;
       justify-content:space-between;
+      gap:14px;
       flex-wrap:wrap;
     }
+
     h1{
       margin:0;
-      font-size: clamp(28px, 3.8vw, 44px);
+      font-size: clamp(28px, 4vw, 46px);
+      line-height:1.08;
       letter-spacing:-.02em;
-      line-height:1.1;
     }
-    .badge{
-      position:relative;
-      margin-top:4px;
-      padding:10px 14px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, rgba(255,79,163,.18), rgba(124,77,255,.14));
-      border: 1px solid rgba(255,255,255,.7);
-      font-weight:700;
-      color: #40204f;
-      white-space:nowrap;
-    }
+
     .sparkle{
-      font-weight:950;
+      font-weight: 800;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
       -webkit-background-clip:text;
       background-clip:text;
       color:transparent;
     }
 
+    .badge{
+      margin-top: 6px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(255,79,163,.16), rgba(124,77,255,.14));
+      border: 1px solid rgba(255,255,255,.72);
+      font-weight: 700;
+      color:#3a2153;
+      white-space:nowrap;
+      box-shadow: 0 10px 22px rgba(25, 15, 55, .06);
+    }
+
     .sub{
       position:relative;
-      margin: 10px 0 0;
-      font-size: 1.05rem;
+      margin: 12px 0 0;
+      max-width: 86ch;
       color: var(--muted);
-      line-height:1.55;
-      max-width: 80ch;
+      font-size: 1.07rem;
+      line-height: 1.62;
     }
 
     .fromline{
       position:relative;
-      margin: 12px 0 0;
+      margin: 14px 0 0;
       display:flex;
-      gap:10px;
       align-items:center;
+      gap:10px;
       flex-wrap:wrap;
-      color:#3a2b44;
-      font-weight:800;
     }
     .pill{
-      padding:8px 12px;
-      border-radius:999px;
-      background: rgba(255,255,255,.72);
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.78);
       border: 1px solid rgba(0,0,0,.08);
-      box-shadow: 0 10px 22px rgba(0,0,0,.06);
-      font-weight:900;
+      box-shadow: var(--shadow2);
+      font-weight: 800;
+      color:#2f2340;
     }
     .from-muted{
       color: var(--muted);
-      font-weight:700;
+      font-weight: 650;
     }
 
-    .panel-grid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
+    .grid{
+      position:relative;
       margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1.02fr .98fr;
+      gap: 16px;
     }
-    @media (max-width: 850px){
-      .panel-grid{ grid-template-columns: 1fr; }
+    @media (max-width: 900px){
+      .grid{ grid-template-columns: 1fr; }
     }
 
     .panel{
-      background: rgba(255,255,255,.62);
-      border: 1px solid rgba(255,255,255,.75);
+      background: var(--card2);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,.72);
       border-radius: var(--radius);
-      box-shadow: 0 14px 35px rgba(35, 26, 60, .10);
+      box-shadow: var(--shadow2);
       padding: 16px;
-      position:relative;
       overflow:hidden;
     }
     .panel h2{
       margin: 4px 0 12px;
-      font-size: 1.2rem;
-      letter-spacing:-.01em;
+      font-size: 1.15rem;
+      letter-spacing: -.01em;
     }
 
+    /* Photo */
+    .photo-card{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      align-items:start;
+    }
+
+    .frame{
+      background: rgba(255,255,255,.85);
+      border-radius: 18px;
+      padding: 10px;
+      border: 1px solid rgba(0,0,0,.06);
+      box-shadow: 0 14px 30px rgba(0,0,0,.10);
+    }
+    .frame img{
+      width:100%;
+      height: 340px;
+      object-fit: cover;
+      border-radius: 14px;
+      display:block;
+      background: rgba(0,0,0,.04);
+    }
+    @media (max-width: 520px){
+      .frame img{ height: 260px; }
+    }
+
+    .caption{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:center;
+      font-weight: 800;
+      color:#2f2340;
+    }
+    .caption small{
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    /* Compliments */
     .quote{
       background: rgba(255,79,163,.10);
-      border: 1px solid rgba(255,79,163,.20);
+      border: 1px solid rgba(255,79,163,.18);
       border-radius: 18px;
       padding: 14px;
       margin: 10px 0 12px;
-      line-height:1.5;
+      line-height: 1.55;
     }
     .quote strong{ color:#3a0a2d; }
 
@@ -198,7 +247,7 @@
       cursor:pointer;
       padding: 11px 14px;
       border-radius: 14px;
-      font-weight: 900;
+      font-weight: 800;
       transition: transform .08s ease, filter .2s ease;
       display:inline-flex;
       align-items:center;
@@ -206,15 +255,23 @@
       user-select:none;
     }
     button:active{ transform: translateY(1px) scale(.99); }
+
     .primary{
       color:white;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
       box-shadow: 0 14px 28px rgba(255,79,163,.20);
     }
     .ghost{
-      background: rgba(255,255,255,.7);
+      background: rgba(255,255,255,.82);
       border: 1px solid rgba(0,0,0,.08);
-      color:#3a2b44;
+      color:#2f2340;
+    }
+
+    .tiny{
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: .92rem;
+      line-height: 1.55;
     }
 
     /* Gifts */
@@ -223,36 +280,38 @@
     }
     .gift-grid{
       display:grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 12px;
       margin-top: 10px;
     }
-    @media (max-width: 850px){
-      .gift-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+    @media (max-width: 900px){
+      .gift-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 520px){
       .gift-grid{ grid-template-columns: 1fr; }
     }
+
     .gift{
       position:relative;
       border-radius: 18px;
-      background: rgba(255,255,255,.78);
+      background: rgba(255,255,255,.82);
       border: 1px solid rgba(0,0,0,.08);
       padding: 14px 14px 16px;
       overflow:hidden;
-      min-height: 170px;
-      box-shadow: 0 10px 24px rgba(0,0,0,.06);
+      min-height: 176px;
+      box-shadow: 0 12px 24px rgba(0,0,0,.07);
       cursor:pointer;
       text-align:left;
     }
     .gift:focus-visible{
       outline: 3px solid rgba(124,77,255,.35);
-      outline-offset: 3px;
+      outline-offset: 4px;
     }
 
+    /* Gift box illustration */
     .box{
-      width: 92px;
-      height: 72px;
+      width: 94px;
+      height: 74px;
       margin: 6px 0 10px;
       position:relative;
     }
@@ -271,25 +330,25 @@
       position:absolute;
       top: 22px;
       left:0; right:0;
-      height: 50px;
+      height: 52px;
       border-radius: 12px;
-      background: rgba(255,79,163,.15);
+      background: rgba(255,79,163,.14);
       border: 1px solid rgba(255,79,163,.25);
       box-shadow: inset 0 0 0 3px rgba(255,255,255,.55);
     }
     .ribbon{
       position:absolute;
       top: 22px;
-      left: 43px;
+      left: 44px;
       width: 10px;
-      height: 50px;
+      height: 52px;
       border-radius: 8px;
       background: rgba(124,77,255,.55);
     }
     .bow{
       position:absolute;
       top: -6px;
-      left: 33px;
+      left: 34px;
       width: 30px;
       height: 18px;
       display:flex;
@@ -300,22 +359,22 @@
       width: 14px;
       height: 18px;
       border-radius: 12px;
-      background: rgba(255,255,255,.8);
+      background: rgba(255,255,255,.86);
       border: 1px solid rgba(0,0,0,.06);
       transform: rotate(10deg);
     }
     .bow span:last-child{ transform: rotate(-10deg); }
 
     .gift-title{
-      font-weight: 950;
-      letter-spacing:-.01em;
       margin:0;
+      font-weight: 900;
+      letter-spacing: -.01em;
     }
     .gift-hint{
       margin: 6px 0 0;
       color: var(--muted);
       font-size: .95rem;
-      line-height:1.4;
+      line-height: 1.42;
     }
 
     .surprise{
@@ -339,15 +398,12 @@
     }
     .surprise p{
       margin:0;
-      color:#3a2b44;
-      line-height:1.45;
+      color:#2f2340;
+      line-height:1.5;
     }
 
     .gift.open .lid{ transform: rotate(-35deg); }
-    .gift.open .surprise{
-      transform: translateY(0);
-      opacity:1;
-    }
+    .gift.open .surprise{ transform: translateY(0); opacity:1; }
 
     /* Confetti hearts */
     .confetti{
@@ -364,28 +420,28 @@
       filter: drop-shadow(0 6px 8px rgba(0,0,0,.10));
     }
     @keyframes pop{
-      0%{ transform: translateY(10px) scale(.6); opacity:0; }
-      15%{ opacity:1; }
-      100%{ transform: translateY(-70px) scale(1.2); opacity:0; }
+      0%   { transform: translateY(10px) scale(.6); opacity:0; }
+      15%  { opacity:1; }
+      100% { transform: translateY(-72px) scale(1.2); opacity:0; }
     }
 
     footer{
       text-align:center;
       color: var(--muted);
       margin-top: 16px;
-      font-size:.95rem;
-      line-height:1.5;
+      font-size: .95rem;
+      line-height: 1.55;
     }
     .sig{
       margin-top: 6px;
-      font-weight:900;
-      color:#3a2b44;
+      font-weight: 900;
+      color:#2f2340;
     }
-    .tiny{
-      font-size:.9rem;
-      color: var(--muted);
-      margin: 8px 0 0;
-      line-height:1.5;
+
+    /* Reduced motion support */
+    @media (prefers-reduced-motion: reduce){
+      .flower-wrap, .flower, .heart { animation: none !important; }
+      button, .gift, .polaroid { transition: none !important; }
     }
   </style>
 </head>
@@ -395,23 +451,35 @@
 
   <main class="wrap">
     <section class="hero" aria-label="Galentine’s landing page">
-      <div class="title">
+      <header class="top">
         <h1>Happy <span class="sparkle">Galentine’s Day</span>, Warda 💖</h1>
-        <div class="badge">Besties forever ✨</div>
-      </div>
+        <div class="badge">A little page, a lot of love ✨</div>
+      </header>
 
       <p class="sub">
-        Dear <strong>Warda</strong> — you’re one of those friends who makes everything feel easier and happier.
-        I’m so grateful for you: your kindness, your energy, and the way you just <em>get it</em>.
-        Today is for celebrating you 🫶🌸
+        Dear <strong>Warda</strong> — you’re one of those people who makes life feel lighter and kinder.
+        This is just a small reminder that you’re appreciated more than you know 🫶🌸
       </p>
 
       <div class="fromline" aria-label="From line">
-        <span class="pill">From: Ezia Shahzad 💗</span>
-        <span class="from-muted">with love & bestie energy</span>
+        <span class="pill">From: Armish Shahzad 💗</span>
+        <span class="from-muted">with bestie energy</span>
       </div>
 
-      <div class="panel-grid">
+      <div class="grid" role="region" aria-label="Main content">
+        <section class="panel" aria-label="Photo">
+          <h2>A little memory 📸</h2>
+          <div class="photo-card">
+            <div class="frame">
+              <img src="a.jpeg" alt="Photo with Warda" loading="lazy" />
+            </div>
+            <div class="caption">
+              <span>Warda ✨</span>
+              <small>forever appreciated</small>
+            </div>
+          </div>
+        </section>
+
         <section class="panel" aria-label="Compliments">
           <h2>Compliments for Warda 💌</h2>
 
@@ -426,46 +494,47 @@
           </div>
 
           <p class="tiny">
-            Tap the gifts to reveal sweet notes (I made them extra soft 💞)
+            Open the gifts below to reveal sweet notes (the softest ones are hidden in there 💞)
           </p>
         </section>
-
-        <section class="panel gifts" aria-label="Gift boxes">
-          <h2>Tap a gift to open it 🎁</h2>
-          <div class="gift-grid" id="gift-grid"></div>
-
-          <footer>
-            Happy Galentine’s Day, <span class="sparkle">Warda</span> 💖
-            <div class="sig">— Ezia Shahzad</div>
-          </footer>
-        </section>
       </div>
+
+      <section class="panel gifts" aria-label="Gift boxes" style="margin-top:16px;">
+        <h2>Tap a gift to open it 🎁</h2>
+        <div class="gift-grid" id="gift-grid"></div>
+
+        <footer>
+          Happy Galentine’s Day, <span class="sparkle">Warda</span> 💖
+          <div class="sig">— Armish Shahzad</div>
+        </footer>
+      </section>
     </section>
   </main>
 
   <script>
     const FRIEND_NAME = "Warda";
-    const FROM_NAME = "Ezia Shahzad";
+    const FROM_NAME = "Armish Shahzad";
 
+    // Escape for safe HTML injection (regex version for broad compatibility)
     function escapeHTML(str){
       return String(str)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#39;");
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
     }
 
     const compliments = [
       `${FRIEND_NAME}, you make people feel comfortable just by being around.`,
       `${FRIEND_NAME}, you’re genuinely so thoughtful — it shows in everything you do.`,
-      `${FRIEND_NAME}, you’re the kind of friend that feels like a warm hug.`,
       `${FRIEND_NAME}, you bring such a calm, pretty energy wherever you go.`,
-      `${FRIEND_NAME}, you deserve the happiest, softest kind of love and life.`,
+      `${FRIEND_NAME}, you deserve the happiest, softest kind of life.`,
       `${FRIEND_NAME}, you’re strong, graceful, and so easy to root for.`,
-      `${FRIEND_NAME}, your friendship is one of my best “life upgrades”.`,
-      `${FRIEND_NAME}, you’re rare — in the best, most beautiful way.`,
+      `${FRIEND_NAME}, your friendship is one of my favorite things.`,
       `${FRIEND_NAME}, you make ordinary days feel special.`,
+      `${FRIEND_NAME}, you’re rare — in the best way.`,
+      `${FRIEND_NAME}, you’re kindness with confidence.`,
       `${FRIEND_NAME}, I’m really lucky to have you.`
     ];
 
@@ -483,7 +552,7 @@
     // Floating flowers
     const flowerField = document.getElementById("flower-field");
     const flowerEmojis = ["🌸","🌷","🌼","🪷","💮","🌺"];
-    const flowerCount = 30;
+    const flowerCount = 28;
 
     function makeFlower(){
       const wrap = document.createElement("div");
@@ -493,15 +562,16 @@
       flower.className = "flower";
       flower.textContent = flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)];
 
-      const left  = Math.random() * 100;
-      const size  = 14 + Math.random() * 18;
-      const dur   = 8  + Math.random() * 10;
-      const delay = -Math.random() * dur;
+      const left  = Math.random() * 100;      // vw
+      const size  = 14 + Math.random() * 18;  // px
+      const dur   = 8  + Math.random() * 10;  // s
+      const delay = -Math.random() * dur;     // start mid-animation
+      const op    = (0.62 + Math.random() * 0.35).toFixed(2);
 
       wrap.style.left = left + "vw";
       wrap.style.setProperty("--dur", dur + "s");
       wrap.style.setProperty("--delay", delay + "s");
-      wrap.style.opacity = (0.6 + Math.random() * 0.4).toFixed(2);
+      wrap.style.setProperty("--op", op);
 
       flower.style.fontSize = size + "px";
 
@@ -519,7 +589,7 @@
       complimentText.textContent = msg;
       mainCompliment.animate(
         [{transform:"scale(1)"},{transform:"scale(1.02)"},{transform:"scale(1)"}],
-        {duration:280, easing:"ease-out"}
+        {duration:260, easing:"ease-out"}
       );
     });
 
@@ -532,10 +602,11 @@
       container.appendChild(confetti);
 
       const count = 10;
+      const hearts = ["💖","💗","💘","💞","💕"];
       for(let i=0;i<count;i++){
         const h = document.createElement("span");
         h.className = "heart";
-        h.textContent = ["💖","💗","💘","💞","💕"][Math.floor(Math.random() * 5)];
+        h.textContent = hearts[Math.floor(Math.random() * hearts.length)];
         h.style.left = (10 + Math.random() * 80) + "%";
         h.style.top = (55 + Math.random() * 30) + "%";
         h.style.animationDelay = (Math.random() * 0.15) + "s";
@@ -571,10 +642,9 @@
       gift.addEventListener("click", () => {
         const open = gift.classList.toggle("open");
         gift.setAttribute("aria-expanded", open ? "true" : "false");
-
         if(open){
           sprinkleHearts(gift);
-          complimentText.textContent = message;
+          complimentText.textContent = message; // safe via textContent
         }
       });
 
@@ -584,11 +654,18 @@
     giftMessages.forEach((m, i) => giftGrid.appendChild(createGiftCard(i, m)));
 
     document.getElementById("open-random-gift").addEventListener("click", () => {
-      const gifts = [...document.querySelectorAll(".gift")];
+      const gifts = Array.from(document.querySelectorAll(".gift"));
       const pick = gifts[Math.floor(Math.random() * gifts.length)];
       pick.scrollIntoView({behavior:"smooth", block:"center"});
       if(!pick.classList.contains("open")) pick.click();
       else sprinkleHearts(pick);
+    });
+
+    // Image fallback (silent, no layout changes)
+    document.querySelectorAll("img").forEach(img => {
+      img.addEventListener("error", () => {
+        img.alt = "Image unavailable.";
+      });
     });
   </script>
 </body>
