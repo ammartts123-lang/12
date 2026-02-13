@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Happy Galentine’s Day, Warda 💖</title>
+  <style>
+    :root{
+      --bg1:#fff1f8;
+      --bg2:#f3f7ff;
+      --card:#ffffffcc;
+      --text:#2b2b33;
+      --muted:#65657a;
+      --accent:#ff4fa3;
+      --accent2:#7c4dff;
+      --shadow: 0 18px 45px rgba(35, 26, 60, .15);
+      --radius: 22px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      min-height:100vh;
+      overflow-x:hidden;
+      background:
+        radial-gradient(900px 500px at 20% 10%, #ffd6ea 0%, transparent 60%),
+        radial-gradient(900px 500px at 85% 20%, #d7e6ff 0%, transparent 60%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+    }
+
+    /* Floating flowers */
+    #flower-field{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      overflow:hidden;
+      z-index:1;
+    }
+    .flower-wrap{
+      position:absolute;
+      top:-12vh;
+      will-change: transform;
+      animation: fall var(--dur) linear var(--delay) infinite;
+      pointer-events:none;
+      opacity:.9;
+      filter: drop-shadow(0 8px 10px rgba(0,0,0,.08));
+    }
+    .flower{
+      animation: sway calc(var(--dur) * 0.35) ease-in-out var(--delay) infinite alternate;
+      will-change: transform;
+      display:inline-block;
+    }
+    @keyframes fall{
+      to { transform: translate3d(0, 125vh, 0) rotate(360deg); }
+    }
+    @keyframes sway{
+      from { transform: translate3d(-18px, 0, 0); }
+      to   { transform: translate3d( 18px, 0, 0); }
+    }
+
+    .wrap{
+      position:relative;
+      z-index:2;
+      width:min(950px, 92vw);
+      margin: 40px auto 70px;
+    }
+
+    .hero{
+      background: var(--card);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,.65);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      padding: clamp(18px, 3vw, 28px);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero:before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(280px 140px at 10% 20%, rgba(255,79,163,.18), transparent 70%),
+        radial-gradient(280px 140px at 90% 30%, rgba(124,77,255,.14), transparent 70%);
+      pointer-events:none;
+    }
+
+    .title{
+      position:relative;
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    h1{
+      margin:0;
+      font-size: clamp(28px, 3.8vw, 44px);
+      letter-spacing:-.02em;
+      line-height:1.1;
+    }
+    .badge{
+      position:relative;
+      margin-top:4px;
+      padding:10px 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(255,79,163,.18), rgba(124,77,255,.14));
+      border: 1px solid rgba(255,255,255,.7);
+      font-weight:700;
+      color: #40204f;
+      white-space:nowrap;
+    }
+    .sparkle{
+      font-weight:950;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .sub{
+      position:relative;
+      margin: 10px 0 0;
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height:1.55;
+      max-width: 80ch;
+    }
+
+    .fromline{
+      position:relative;
+      margin: 12px 0 0;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      color:#3a2b44;
+      font-weight:800;
+    }
+    .pill{
+      padding:8px 12px;
+      border-radius:999px;
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(0,0,0,.08);
+      box-shadow: 0 10px 22px rgba(0,0,0,.06);
+      font-weight:900;
+    }
+    .from-muted{
+      color: var(--muted);
+      font-weight:700;
+    }
+
+    .panel-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 18px;
+    }
+    @media (max-width: 850px){
+      .panel-grid{ grid-template-columns: 1fr; }
+    }
+
+    .panel{
+      background: rgba(255,255,255,.62);
+      border: 1px solid rgba(255,255,255,.75);
+      border-radius: var(--radius);
+      box-shadow: 0 14px 35px rgba(35, 26, 60, .10);
+      padding: 16px;
+      position:relative;
+      overflow:hidden;
+    }
+    .panel h2{
+      margin: 4px 0 12px;
+      font-size: 1.2rem;
+      letter-spacing:-.01em;
+    }
+
+    .quote{
+      background: rgba(255,79,163,.10);
+      border: 1px solid rgba(255,79,163,.20);
+      border-radius: 18px;
+      padding: 14px;
+      margin: 10px 0 12px;
+      line-height:1.5;
+    }
+    .quote strong{ color:#3a0a2d; }
+
+    .btnrow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top: 6px;
+    }
+    button{
+      border:0;
+      cursor:pointer;
+      padding: 11px 14px;
+      border-radius: 14px;
+      font-weight: 900;
+      transition: transform .08s ease, filter .2s ease;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      user-select:none;
+    }
+    button:active{ transform: translateY(1px) scale(.99); }
+    .primary{
+      color:white;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 14px 28px rgba(255,79,163,.20);
+    }
+    .ghost{
+      background: rgba(255,255,255,.7);
+      border: 1px solid rgba(0,0,0,.08);
+      color:#3a2b44;
+    }
+
+    /* Gifts */
+    .gifts{
+      margin-top: 16px;
+    }
+    .gift-grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+    @media (max-width: 850px){
+      .gift-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+    @media (max-width: 520px){
+      .gift-grid{ grid-template-columns: 1fr; }
+    }
+    .gift{
+      position:relative;
+      border-radius: 18px;
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(0,0,0,.08);
+      padding: 14px 14px 16px;
+      overflow:hidden;
+      min-height: 170px;
+      box-shadow: 0 10px 24px rgba(0,0,0,.06);
+      cursor:pointer;
+      text-align:left;
+    }
+    .gift:focus-visible{
+      outline: 3px solid rgba(124,77,255,.35);
+      outline-offset: 3px;
+    }
+
+    .box{
+      width: 92px;
+      height: 72px;
+      margin: 6px 0 10px;
+      position:relative;
+    }
+    .lid{
+      position:absolute;
+      left:0; right:0;
+      height: 30px;
+      border-radius: 12px 12px 10px 10px;
+      background: linear-gradient(135deg, rgba(255,79,163,.95), rgba(124,77,255,.85));
+      transform-origin: left center;
+      transform: rotate(0deg);
+      transition: transform .45s cubic-bezier(.2,.8,.2,1);
+      box-shadow: 0 10px 18px rgba(0,0,0,.12);
+    }
+    .base{
+      position:absolute;
+      top: 22px;
+      left:0; right:0;
+      height: 50px;
+      border-radius: 12px;
+      background: rgba(255,79,163,.15);
+      border: 1px solid rgba(255,79,163,.25);
+      box-shadow: inset 0 0 0 3px rgba(255,255,255,.55);
+    }
+    .ribbon{
+      position:absolute;
+      top: 22px;
+      left: 43px;
+      width: 10px;
+      height: 50px;
+      border-radius: 8px;
+      background: rgba(124,77,255,.55);
+    }
+    .bow{
+      position:absolute;
+      top: -6px;
+      left: 33px;
+      width: 30px;
+      height: 18px;
+      display:flex;
+      justify-content:space-between;
+      filter: drop-shadow(0 8px 10px rgba(0,0,0,.12));
+    }
+    .bow span{
+      width: 14px;
+      height: 18px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.8);
+      border: 1px solid rgba(0,0,0,.06);
+      transform: rotate(10deg);
+    }
+    .bow span:last-child{ transform: rotate(-10deg); }
+
+    .gift-title{
+      font-weight: 950;
+      letter-spacing:-.01em;
+      margin:0;
+    }
+    .gift-hint{
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: .95rem;
+      line-height:1.4;
+    }
+
+    .surprise{
+      position:absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      background: white;
+      border-radius: 16px;
+      border: 1px solid rgba(0,0,0,.06);
+      box-shadow: 0 14px 28px rgba(0,0,0,.10);
+      padding: 12px;
+      transform: translateY(140%);
+      opacity:0;
+      transition: transform .5s cubic-bezier(.2,.9,.2,1), opacity .35s ease;
+    }
+    .surprise strong{
+      display:block;
+      color:#3a0a2d;
+      margin-bottom: 6px;
+    }
+    .surprise p{
+      margin:0;
+      color:#3a2b44;
+      line-height:1.45;
+    }
+
+    .gift.open .lid{ transform: rotate(-35deg); }
+    .gift.open .surprise{
+      transform: translateY(0);
+      opacity:1;
+    }
+
+    /* Confetti hearts */
+    .confetti{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      overflow:hidden;
+    }
+    .heart{
+      position:absolute;
+      font-size: 18px;
+      opacity: 0;
+      animation: pop 1.2s ease forwards;
+      filter: drop-shadow(0 6px 8px rgba(0,0,0,.10));
+    }
+    @keyframes pop{
+      0%{ transform: translateY(10px) scale(.6); opacity:0; }
+      15%{ opacity:1; }
+      100%{ transform: translateY(-70px) scale(1.2); opacity:0; }
+    }
+
+    footer{
+      text-align:center;
+      color: var(--muted);
+      margin-top: 16px;
+      font-size:.95rem;
+      line-height:1.5;
+    }
+    .sig{
+      margin-top: 6px;
+      font-weight:900;
+      color:#3a2b44;
+    }
+    .tiny{
+      font-size:.9rem;
+      color: var(--muted);
+      margin: 8px 0 0;
+      line-height:1.5;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="flower-field" aria-hidden="true"></div>
+
+  <main class="wrap">
+    <section class="hero" aria-label="Galentine’s landing page">
+      <div class="title">
+        <h1>Happy <span class="sparkle">Galentine’s Day</span>, Warda 💖</h1>
+        <div class="badge">Besties forever ✨</div>
+      </div>
+
+      <p class="sub">
+        Dear <strong>Warda</strong> — you’re one of those friends who makes everything feel easier and happier.
+        I’m so grateful for you: your kindness, your energy, and the way you just <em>get it</em>.
+        Today is for celebrating you 🫶🌸
+      </p>
+
+      <div class="fromline" aria-label="From line">
+        <span class="pill">From: Ezia Shahzad 💗</span>
+        <span class="from-muted">with love & bestie energy</span>
+      </div>
+
+      <div class="panel-grid">
+        <section class="panel" aria-label="Compliments">
+          <h2>Compliments for Warda 💌</h2>
+
+          <div class="quote" id="main-compliment" role="status" aria-live="polite">
+            <strong>Compliment of the moment:</strong>
+            <span id="compliment-text">Warda, you’re a walking reminder that good people still exist.</span>
+          </div>
+
+          <div class="btnrow">
+            <button class="primary" id="new-compliment" type="button">✨ Another compliment</button>
+            <button class="ghost" id="open-random-gift" type="button">🎁 Open a gift</button>
+          </div>
+
+          <p class="tiny">
+            Tap the gifts to reveal sweet notes (I made them extra soft 💞)
+          </p>
+        </section>
+
+        <section class="panel gifts" aria-label="Gift boxes">
+          <h2>Tap a gift to open it 🎁</h2>
+          <div class="gift-grid" id="gift-grid"></div>
+
+          <footer>
+            Happy Galentine’s Day, <span class="sparkle">Warda</span> 💖
+            <div class="sig">— Ezia Shahzad</div>
+          </footer>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const FRIEND_NAME = "Warda";
+    const FROM_NAME = "Ezia Shahzad";
+
+    function escapeHTML(str){
+      return String(str)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
+    const compliments = [
+      `${FRIEND_NAME}, you make people feel comfortable just by being around.`,
+      `${FRIEND_NAME}, you’re genuinely so thoughtful — it shows in everything you do.`,
+      `${FRIEND_NAME}, you’re the kind of friend that feels like a warm hug.`,
+      `${FRIEND_NAME}, you bring such a calm, pretty energy wherever you go.`,
+      `${FRIEND_NAME}, you deserve the happiest, softest kind of love and life.`,
+      `${FRIEND_NAME}, you’re strong, graceful, and so easy to root for.`,
+      `${FRIEND_NAME}, your friendship is one of my best “life upgrades”.`,
+      `${FRIEND_NAME}, you’re rare — in the best, most beautiful way.`,
+      `${FRIEND_NAME}, you make ordinary days feel special.`,
+      `${FRIEND_NAME}, I’m really lucky to have you.`
+    ];
+
+    const giftMessages = [
+      `${FRIEND_NAME}, you’re the kind of person people remember for the right reasons.`,
+      `${FRIEND_NAME}, your heart is pure — never let anyone dim you.`,
+      `${FRIEND_NAME}, you make the world softer just by existing in it.`,
+      `${FRIEND_NAME}, I’m proud of you for showing up, even on hard days.`,
+      `${FRIEND_NAME}, you’re beautiful inside and out — always.`,
+      `${FRIEND_NAME}, thank you for being you. Seriously.`,
+      `Bestie promise: I’m always here for you — no matter what. — ${FROM_NAME}`,
+      `If you ever forget your worth, come back to this: you’re priceless.`
+    ];
+
+    // Floating flowers
+    const flowerField = document.getElementById("flower-field");
+    const flowerEmojis = ["🌸","🌷","🌼","🪷","💮","🌺"];
+    const flowerCount = 30;
+
+    function makeFlower(){
+      const wrap = document.createElement("div");
+      wrap.className = "flower-wrap";
+
+      const flower = document.createElement("span");
+      flower.className = "flower";
+      flower.textContent = flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)];
+
+      const left  = Math.random() * 100;
+      const size  = 14 + Math.random() * 18;
+      const dur   = 8  + Math.random() * 10;
+      const delay = -Math.random() * dur;
+
+      wrap.style.left = left + "vw";
+      wrap.style.setProperty("--dur", dur + "s");
+      wrap.style.setProperty("--delay", delay + "s");
+      wrap.style.opacity = (0.6 + Math.random() * 0.4).toFixed(2);
+
+      flower.style.fontSize = size + "px";
+
+      wrap.appendChild(flower);
+      flowerField.appendChild(wrap);
+    }
+    for(let i=0;i<flowerCount;i++) makeFlower();
+
+    // Compliments
+    const complimentText = document.getElementById("compliment-text");
+    const mainCompliment = document.getElementById("main-compliment");
+
+    document.getElementById("new-compliment").addEventListener("click", () => {
+      const msg = compliments[Math.floor(Math.random() * compliments.length)];
+      complimentText.textContent = msg;
+      mainCompliment.animate(
+        [{transform:"scale(1)"},{transform:"scale(1.02)"},{transform:"scale(1)"}],
+        {duration:280, easing:"ease-out"}
+      );
+    });
+
+    // Gifts
+    const giftGrid = document.getElementById("gift-grid");
+
+    function sprinkleHearts(container){
+      const confetti = document.createElement("div");
+      confetti.className = "confetti";
+      container.appendChild(confetti);
+
+      const count = 10;
+      for(let i=0;i<count;i++){
+        const h = document.createElement("span");
+        h.className = "heart";
+        h.textContent = ["💖","💗","💘","💞","💕"][Math.floor(Math.random() * 5)];
+        h.style.left = (10 + Math.random() * 80) + "%";
+        h.style.top = (55 + Math.random() * 30) + "%";
+        h.style.animationDelay = (Math.random() * 0.15) + "s";
+        confetti.appendChild(h);
+      }
+      setTimeout(() => confetti.remove(), 1400);
+    }
+
+    function createGiftCard(index, message){
+      const gift = document.createElement("button");
+      gift.type = "button";
+      gift.className = "gift";
+      gift.setAttribute("aria-expanded", "false");
+      gift.setAttribute("aria-label", `Open gift ${index + 1}`);
+
+      const safeMessage = escapeHTML(message);
+
+      gift.innerHTML = `
+        <div class="box" aria-hidden="true">
+          <div class="lid"></div>
+          <div class="bow"><span></span><span></span></div>
+          <div class="base"></div>
+          <div class="ribbon"></div>
+        </div>
+        <p class="gift-title">Gift #${index + 1}</p>
+        <p class="gift-hint">Tap to open a sweet note ✨</p>
+        <div class="surprise" role="status" aria-live="polite">
+          <strong>Surprise message 💌</strong>
+          <p>${safeMessage}</p>
+        </div>
+      `;
+
+      gift.addEventListener("click", () => {
+        const open = gift.classList.toggle("open");
+        gift.setAttribute("aria-expanded", open ? "true" : "false");
+
+        if(open){
+          sprinkleHearts(gift);
+          complimentText.textContent = message;
+        }
+      });
+
+      return gift;
+    }
+
+    giftMessages.forEach((m, i) => giftGrid.appendChild(createGiftCard(i, m)));
+
+    document.getElementById("open-random-gift").addEventListener("click", () => {
+      const gifts = [...document.querySelectorAll(".gift")];
+      const pick = gifts[Math.floor(Math.random() * gifts.length)];
+      pick.scrollIntoView({behavior:"smooth", block:"center"});
+      if(!pick.classList.contains("open")) pick.click();
+      else sprinkleHearts(pick);
+    });
+  </script>
+</body>
+</html>
